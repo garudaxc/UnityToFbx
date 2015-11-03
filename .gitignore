@@ -17,6 +17,20 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# visual stdio
+*.suo
+*.sdf
+*.user
+*.opensdf
+JsonToFbx/bin/
+JsonToFbx/intermediate/
+
+# unity file
+*.meta
+Library/
+obj/
+ProjectSettings/
+
 # =========================
 # Operating System Files
 # =========================

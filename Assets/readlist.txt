@@ -1,0 +1,5 @@
+1.bundle
+assets/_stagework/resources/3d/chara/body/body0001/meshes/md_body0001_0_0_0.fbx
+
+2.bundle
+assets/_stagework/resources/3d/chara/head/chr0185/meshes/md_chr0185.fbx
