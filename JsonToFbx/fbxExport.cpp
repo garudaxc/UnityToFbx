@@ -150,6 +150,7 @@ void ExportBones(const Value& obj)
 		fbxBones[i] = boneNode;
 		double x, y, z, w;
 		x = boneTransform[i * 7 + 0].GetDouble();
+		x = -x;
 		y = boneTransform[i * 7 + 1].GetDouble();
 		z = boneTransform[i * 7 + 2].GetDouble();
 		boneNode->LclTranslation.Set(FbxDouble3(x, y, z));
@@ -215,6 +216,7 @@ void ExportFbxMesh(const Value& obj)
 		for (int i = 0; i < numVertex; i++)
 		{
 			double x = pos[i * 3 + 0].GetDouble();
+			x = -x;
 			double y = pos[i * 3 + 1].GetDouble();
 			double z = pos[i * 3 + 2].GetDouble();
 			lControlPoints[i] = FbxVector4(x, y, z);
@@ -231,6 +233,7 @@ void ExportFbxMesh(const Value& obj)
 		for (int i = 0; i < numVertex; i++)
 		{
 			double x = normal[i * 3 + 0].GetDouble();
+			x = -x;
 			double y = normal[i * 3 + 1].GetDouble();
 			double z = normal[i * 3 + 2].GetDouble();
 			array.Add(FbxVector4(x, y, z));
@@ -285,9 +288,15 @@ void ExportFbxMesh(const Value& obj)
 			for (int i = 0; i < numIndex / 3; i++)
 			{
 				pMesh->BeginPolygon(-1, -1, subMesh);
-				pMesh->AddPolygon(index0[i * 3 + 0].GetInt());
-				pMesh->AddPolygon(index0[i * 3 + 1].GetInt());
-				pMesh->AddPolygon(index0[i * 3 + 2].GetInt());
+				int index[3] = {
+					index0[i * 3 + 0].GetInt(),
+					index0[i * 3 + 1].GetInt(),
+					index0[i * 3 + 2].GetInt(),
+				};
+
+				pMesh->AddPolygon(index[0]);
+				pMesh->AddPolygon(index[2]);
+				pMesh->AddPolygon(index[1]);
 				pMesh->EndPolygon();
 			}
 		}
